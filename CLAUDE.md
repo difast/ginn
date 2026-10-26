@@ -10,7 +10,8 @@
 |---|---|
 | Движок | Unreal Engine 5 — **точная версия уточняется** (зафиксировать в `.uproject` → `EngineAssociation`) |
 | C++ модуль | `INTGames` (`Source/INTGames`) |
-| Префикс классов | `Int` → `AIntPlayerCharacter`, `UIntHealthComponent`, `FIntAmmoState` |
+| Основа | шаблон First Person (C++); подключение — [`docs/SETUP.md`](docs/SETUP.md) |
+| Префикс классов | новые классы — `Int` (`UIntHealthComponent`, `FIntAmmoState`); классы шаблона (`AINTGamesCharacter` и т.п.) сохраняют свои имена |
 | Префикс ассетов | стандарт UE: `BP_`, `WBP_`, `DA_`, `IA_`, `IMC_`, `BT_`, `BB_`, `M_`, `MI_`, `SM_`, `SK_`, `ABP_`, `L_` |
 | Папка контента игры | `Content/INTGames/...` (сторонние паки — в своих папках, не смешивать) |
 
@@ -88,7 +89,7 @@ Unreal Engine есть только на Windows-машине разработч
 "<UE>\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "%CD%\INTGames.uproject" -ExecCmds="Automation RunTests INTGames; Quit" -unattended -nopause -nullrhi -log
 
 :: Сборка игры
-"<UE>\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="%CD%\INTGames.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="%CD%\Build"
+"<UE>\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="%CD%\INTGames.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="%CD%\Packaged"
 ```
 
 Каждый этап в `docs/ARCHITECTURE.md` содержит: что проверяется автотестом, что — вручную в PIE
@@ -96,7 +97,9 @@ Unreal Engine есть только на Windows-машине разработч
 
 ## Git
 
+- Основная ветка — `main`. История не переписывается: без `--force`, `rebase` опубликованных коммитов, `amend` после push.
 - Бинарные ассеты — через **Git LFS** (`.gitattributes`). Не коммитить `Binaries/`, `Intermediate/`,
   `Saved/`, `DerivedDataCache/`, `.vs/`, `*.sln` (см. `.gitignore`).
+- Перед коммитом с ассетами — `bash Scripts/check_repo.sh` (ошибок быть не должно).
 - `.uasset`/`.umap` нельзя мёрджить — перед правкой общего ассета договориться (или LFS lock).
 - Коммиты небольшие, по одному логическому изменению, сообщение — что и зачем.

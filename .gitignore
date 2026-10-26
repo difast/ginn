@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------
+# Unreal Engine 5 — генерируемые и локальные файлы
+# ---------------------------------------------------------------
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+**/DerivedDataCache/
+
+# Плагины проекта: исходники и .uplugin в Git, сборка — нет
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Результаты упаковки (BuildCookRun -archivedirectory=Packaged)
+Packaged/
+Build/Receipts/
+
+# Кэши шейдеров и сборки
+*.ddc
+*.pdb
+*.patch_*.pak
+
+# ---------------------------------------------------------------
+# IDE: Visual Studio / Rider / VS Code (решение генерируется из .uproject)
+# ---------------------------------------------------------------
+.vs/
+.idea/
+.vscode/
+*.sln
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.code-workspace
+.vsconfig.user
+CMakeLists.txt
+cmake-build-*/
+
+# Скомпилированные объекты
+*.o
+*.dll
+*.exe
+*.lib
+*.exp
+*.ilk
+*.so
+*.dylib
+*.target
+*.modules
+
+# ---------------------------------------------------------------
+# ОС и прочее
+# ---------------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+*.bak
+*~
